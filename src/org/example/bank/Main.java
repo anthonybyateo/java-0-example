@@ -18,6 +18,16 @@ public class Main {
 
         String accountId2 = bank.createAccount(passportId);
         bank.addBalance(passportId, accountId2, 5);
+        bank.unblockAccount(passportId, accountId2);
+
+        String accountId3 = bank.createAccount(passportId);
+        bank.addBalance(passportId, accountId3, -15);
+
+        System.out.println("findById: " + bank.findById(passportId, accountId3));
+        System.out.println("sortAccounts: " + bank.sortAccounts(passportId));
+        System.out.println("getBalanceSum: " + bank.getBalanceSum(passportId));
+        System.out.println("getPositiveBalanceSum: " + bank.getPositiveBalanceSum(passportId));
+        System.out.println("getNegativeBalanceSum: " + bank.getNegativeBalanceSum(passportId));
 
         System.out.println(bank);
     }

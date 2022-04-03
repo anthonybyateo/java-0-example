@@ -16,6 +16,10 @@ public class Client {
         return id;
     }
 
+    public ArrayList<Account> getAccounts() {
+        return accounts;
+    }
+
     public Account getAccount(String id) {
         for (Account account: accounts) {
             if (account.getId().equals(id)) {

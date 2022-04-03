@@ -1,6 +1,8 @@
 package org.example.bank;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 public class Bank {
@@ -46,6 +48,31 @@ public class Bank {
 
     public void unblockAccount(String passportId, String accountId) {
         getClient(passportId).getAccount(accountId).setBlocked(false);
+    }
+
+    public Account findById(String passportId, String accountId) {
+        return getClient(passportId).getAccount(accountId);
+    }
+
+    public List<Account> sortAccounts(String passportId) {
+        return getClient(passportId).getAccounts().stream()
+                .sorted(Comparator.comparing(Account::getBalance)).toList();
+    }
+
+    public int getBalanceSum(String passportId) {
+        return getClient(passportId).getAccounts().stream().mapToInt(Account::getBalance).sum();
+    }
+
+    public int getPositiveBalanceSum(String passportId) {
+        return getClient(passportId).getAccounts().stream()
+                .filter(account -> account.getBalance() > 0)
+                .mapToInt(Account::getBalance).sum();
+    }
+
+    public int getNegativeBalanceSum(String passportId) {
+        return getClient(passportId).getAccounts().stream()
+                .filter(account -> account.getBalance() < 0)
+                .mapToInt(Account::getBalance).sum();
     }
 
     @Override
