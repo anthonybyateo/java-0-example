@@ -35,11 +35,10 @@ public class Bank {
 
     public void addBalance(String passportId, String accountId, int balance) throws IllegalAccessException {
         Account account = getClient(passportId).getAccount(accountId);
-        if (!account.isBlocked()) {
-            account.addBalance(balance);
-        } else {
+        if (account.isBlocked()) {
             throw new IllegalAccessException();
         }
+        account.addBalance(balance);
     }
 
     public void blockAccount(String passportId, String accountId) {
@@ -55,24 +54,37 @@ public class Bank {
     }
 
     public List<Account> sortAccounts(String passportId) {
-        return getClient(passportId).getAccounts().stream()
-                .sorted(Comparator.comparing(Account::getBalance)).toList();
+        List<Account> accounts = getClient(passportId).getAccounts();
+        accounts.sort(Comparator.comparing(Account::getBalance));
+        return accounts;
     }
 
     public int getBalanceSum(String passportId) {
-        return getClient(passportId).getAccounts().stream().mapToInt(Account::getBalance).sum();
+        int sum = 0;
+        for (Account account : getClient(passportId).getAccounts()) {
+            sum += account.getBalance();
+        }
+        return sum;
     }
 
     public int getPositiveBalanceSum(String passportId) {
-        return getClient(passportId).getAccounts().stream()
-                .filter(account -> account.getBalance() > 0)
-                .mapToInt(Account::getBalance).sum();
+        int sum = 0;
+        for (Account account : getClient(passportId).getAccounts()) {
+            if (account.getBalance() > 0) {
+                sum += account.getBalance();
+            }
+        }
+        return sum;
     }
 
     public int getNegativeBalanceSum(String passportId) {
-        return getClient(passportId).getAccounts().stream()
-                .filter(account -> account.getBalance() < 0)
-                .mapToInt(Account::getBalance).sum();
+        int sum = 0;
+        for (Account account : getClient(passportId).getAccounts()) {
+            if (account.getBalance() < 0) {
+                sum += account.getBalance();
+            }
+        }
+        return sum;
     }
 
     @Override
