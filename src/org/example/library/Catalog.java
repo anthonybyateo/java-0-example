@@ -3,8 +3,8 @@ package org.example.library;
 import java.util.List;
 
 public class Catalog {
-    private List<Book> books;
-    private List<User> users;
+    private final List<Book> books;
+    private final List<User> users;
 
     public Catalog() {
         FileReader fileReader = new FileReader();

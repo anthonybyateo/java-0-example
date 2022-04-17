@@ -4,8 +4,15 @@ public class App {
 
     public static void main(String[] args) {
         Catalog catalog = new Catalog();
+        AuthService authService = new AuthService(catalog);
 
-        System.out.println(catalog);
+        try {
+            authService.signIn();
+        } catch (RuntimeException e) {
+            System.out.println("RuntimeException");
+        }
+
+//        System.out.println(catalog);
     }
 
 }
