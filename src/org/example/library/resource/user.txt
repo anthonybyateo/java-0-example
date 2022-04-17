@@ -1,0 +1,3 @@
+id,name,login,password,isAdmin
+1,Anthony,anthony,123456,true
+2,John,john,654321,false
