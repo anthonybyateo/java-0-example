@@ -1,3 +1,3 @@
-id,name,login,password,isAdmin
-1,Anthony,anthony,123456,true
-2,John,john,654321,false
+id,username,passwordHash,isAdmin
+1,anthony,D7190EB194FF9494625514B6D178C87F99C5973E28C398969D2233F2960A573E,true
+2,john,654321,false

@@ -9,7 +9,7 @@ public class App {
         try {
             authService.signIn();
         } catch (RuntimeException e) {
-            System.out.println("RuntimeException");
+            System.err.println(e.getMessage());
         }
 
 //        System.out.println(catalog);

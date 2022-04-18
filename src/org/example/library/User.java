@@ -1,46 +1,45 @@
 package org.example.library;
 
+import java.util.UUID;
+
 public class User {
     private String id;
-    private String name;
-    private String login;
-    private String password;
+    private String username;
+    private String passwordHash;
     private boolean isAdmin;
 
-    public User(String id, String name, String login, String password, boolean isAdmin) {
+    public User(String id, String login, String password, boolean isAdmin) {
         this.id = id;
-        this.name = name;
-        this.login = login;
-        this.password = password;
+        this.username = login;
+        this.passwordHash = password;
         this.isAdmin = isAdmin;
+    }
+
+    public User(String login, String password) {
+        this.id = UUID.randomUUID().toString();
+        this.username = login;
+        this.passwordHash = password;
+        this.isAdmin = false;
     }
 
     public String getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getLogin() {
-        return login;
+    public String getPasswordHash() {
+        return passwordHash;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 
     public boolean isAdmin() {
@@ -55,9 +54,8 @@ public class User {
     public String toString() {
         return "User{" +
                 "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
+                ", login='" + username + '\'' +
+                ", passwordHash='" + passwordHash + '\'' +
                 ", isAdmin=" + isAdmin +
                 '}';
     }

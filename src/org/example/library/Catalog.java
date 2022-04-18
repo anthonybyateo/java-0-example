@@ -5,6 +5,7 @@ import java.util.List;
 public class Catalog {
     private final List<Book> books;
     private final List<User> users;
+    private User currentUser;
 
     public Catalog() {
         FileReader fileReader = new FileReader();
@@ -18,6 +19,10 @@ public class Catalog {
 
     public List<User> getUsers() {
         return users;
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
     }
 
     @Override

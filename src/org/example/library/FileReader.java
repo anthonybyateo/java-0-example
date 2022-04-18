@@ -32,7 +32,7 @@ public class FileReader {
         List<String> lines = readByLine(fileLoader.getFile(FileName.USER));
         for (String line : lines) {
             String[] sublines = line.split(DELIMITER);
-            users.add(new User(sublines[0], sublines[1], sublines[2], sublines[3], Boolean.parseBoolean(sublines[4])));
+            users.add(new User(sublines[0], sublines[2], sublines[3], Boolean.parseBoolean(sublines[4])));
         }
         return users;
     }
