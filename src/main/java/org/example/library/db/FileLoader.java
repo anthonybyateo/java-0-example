@@ -1,22 +1,22 @@
-package org.example.library.resource;
+package org.example.library.db;
 
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-// todo: move to real resource
+// todo: Rewrite the class to build jar.
 public class FileLoader {
+    private static final String RESOURCES_ABSOLUTE_PATH_FORMAT;
+
+    static {
+        RESOURCES_ABSOLUTE_PATH_FORMAT = "INSERT_YOUR_PATH\\src\\main\\resources\\library\\%s";
+    }
+
     private Map<FileName, String> filePaths;
 
     public FileLoader() {
         this.filePaths = new HashMap<>();
-        loadFiles();
-    }
-
-    private void loadFiles() {
         for (FileName fileName : FileName.values()) {
-            URL url = getClass().getResource(fileName.getName());
-            this.filePaths.put(fileName, url.getPath());
+            this.filePaths.put(fileName, RESOURCES_ABSOLUTE_PATH_FORMAT.formatted(fileName.getName()));
         }
     }
 

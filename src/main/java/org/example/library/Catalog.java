@@ -1,6 +1,6 @@
 package org.example.library;
 
-import org.example.library.resource.FileLoader;
+import org.example.library.db.FileLoader;
 
 import java.util.List;
 

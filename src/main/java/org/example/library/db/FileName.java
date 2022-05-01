@@ -1,4 +1,4 @@
-package org.example.library.resource;
+package org.example.library.db;
 
 import java.util.ArrayList;
 import java.util.List;

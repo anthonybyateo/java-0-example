@@ -1,7 +1,7 @@
 package org.example.library;
 
-import org.example.library.resource.FileLoader;
-import org.example.library.resource.FileName;
+import org.example.library.db.FileLoader;
+import org.example.library.db.FileName;
 
 import java.io.File;
 import java.io.FileNotFoundException;
