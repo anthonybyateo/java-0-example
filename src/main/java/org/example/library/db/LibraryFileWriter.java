@@ -1,7 +1,7 @@
-package org.example.library;
+package org.example.library.db;
 
-import org.example.library.db.FileLoader;
-import org.example.library.db.FileName;
+import org.example.library.Book;
+import org.example.library.User;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

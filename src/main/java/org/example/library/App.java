@@ -12,9 +12,14 @@ public class App {
         Scanner in = new Scanner(System.in);
         int menuChoice = Integer.parseInt(in.nextLine());
         switch (menuChoice) {
-            case 0: return;
-            case 1: authService.signIn();
-            case 2: authService.signUp();
+            case 0:
+                return;
+            case 1:
+                authService.signIn();
+                break;
+            case 2:
+                authService.signUp();
+                break;
         }
 
 //        try {

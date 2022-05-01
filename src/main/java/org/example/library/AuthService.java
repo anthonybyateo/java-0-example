@@ -33,7 +33,7 @@ public class AuthService {
         System.out.print("Enter your password: ");
         String password = in.nextLine();
 
-        catalog.setCurrentUser(catalog.createUser(username, password));
+        catalog.setCurrentUser(catalog.createUser(username, hashPassword(password)));
         in.close();
     }
 

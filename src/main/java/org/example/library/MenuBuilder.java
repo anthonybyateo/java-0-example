@@ -5,8 +5,8 @@ public class MenuBuilder {
     public static void printStart() {
         System.out.print("""
                 0 - Exit
-                1 - Log in
-                2 - Log out
+                1 - Sign in
+                2 - Sign up
                 """);
         System.out.print("Choose action: ");
     }
