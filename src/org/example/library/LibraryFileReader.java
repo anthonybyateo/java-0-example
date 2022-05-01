@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class FileReader {
+public class LibraryFileReader {
     private static final String DELIMITER = ",";
     private FileLoader fileLoader;
 
-    public FileReader() {
-        this.fileLoader = new FileLoader();
+    public LibraryFileReader(FileLoader fileLoader) {
+        this.fileLoader = fileLoader;
     }
 
     public List<Book> readBooks() {
@@ -32,7 +32,7 @@ public class FileReader {
         List<String> lines = readByLine(fileLoader.getFile(FileName.USER));
         for (String line : lines) {
             String[] sublines = line.split(DELIMITER);
-            users.add(new User(sublines[0], sublines[2], sublines[3], Boolean.parseBoolean(sublines[4])));
+            users.add(new User(sublines[0], sublines[1], sublines[2], Boolean.parseBoolean(sublines[3])));
         }
         return users;
     }

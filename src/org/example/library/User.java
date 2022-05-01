@@ -4,34 +4,31 @@ import java.util.UUID;
 
 public class User {
     private String id;
-    private String username;
+    private String email;
     private String passwordHash;
     private boolean isAdmin;
 
-    public User(String id, String login, String password, boolean isAdmin) {
-        this.id = id;
-        this.username = login;
-        this.passwordHash = password;
-        this.isAdmin = isAdmin;
+    public User(String email, String passwordHash) {
+        this(UUID.randomUUID().toString(), email, passwordHash, false);
     }
 
-    public User(String login, String password) {
-        this.id = UUID.randomUUID().toString();
-        this.username = login;
-        this.passwordHash = password;
-        this.isAdmin = false;
+    public User(String id, String email, String passwordHash, boolean isAdmin) {
+        this.id = id;
+        this.email = email;
+        this.passwordHash = passwordHash;
+        this.isAdmin = isAdmin;
     }
 
     public String getId() {
         return id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPasswordHash() {
@@ -54,7 +51,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id='" + id + '\'' +
-                ", login='" + username + '\'' +
+                ", login='" + email + '\'' +
                 ", passwordHash='" + passwordHash + '\'' +
                 ", isAdmin=" + isAdmin +
                 '}';

@@ -1,11 +1,17 @@
 package org.example.library;
 
+import java.util.UUID;
+
 public class Book {
     private String id;
     private String title;
     private String description;
     private String author;
     private boolean isEBook;
+
+    public Book(String title, String description, String author) {
+        this(UUID.randomUUID().toString(), title, description, author, false);
+    }
 
     public Book(String id, String title, String description, String author, boolean isEBook) {
         this.id = id;

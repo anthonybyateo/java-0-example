@@ -1,16 +1,21 @@
 package org.example.library;
 
+import org.example.library.resource.FileLoader;
+
 import java.util.List;
 
 public class Catalog {
     private final List<Book> books;
     private final List<User> users;
     private User currentUser;
+    private LibraryFileWriter libraryFileWriter;
 
     public Catalog() {
-        FileReader fileReader = new FileReader();
-        this.books = fileReader.readBooks();
-        this.users = fileReader.readUsers();
+        final FileLoader fileLoader = new FileLoader();
+        final LibraryFileReader libraryFileReader = new LibraryFileReader(fileLoader);
+        this.books = libraryFileReader.readBooks();
+        this.users = libraryFileReader.readUsers();
+        this.libraryFileWriter = new LibraryFileWriter(fileLoader);
     }
 
     public List<Book> getBooks() {
@@ -23,6 +28,19 @@ public class Catalog {
 
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
+    }
+
+    public User createUser(String email, String password) {
+        final User user = new User(email, password);
+        users.add(user);
+        this.libraryFileWriter.writeToUsers(user);
+        return user;
+    }
+
+    public void createBook(String title, String description, String author) {
+        final Book book = new Book(title, description, author);
+        books.add(book);
+        this.libraryFileWriter.writeToBooks(book);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package org.example.library;
 
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -12,15 +13,15 @@ public class AuthService {
         this.catalog = catalog;
     }
 
-    public void signIn() {
+    public void signIn() throws IOException, InterruptedException {
         Scanner in = new Scanner(System.in);
-        System.out.print("Enter your username: ");
-        String username = in.nextLine();
+        System.out.print("Enter your email: ");
+        String email = in.nextLine();
 
         System.out.print("Enter your password: ");
         String password = in.nextLine();
 
-        catalog.setCurrentUser(getUser(username, password));
+        catalog.setCurrentUser(getUser(email, password));
         in.close();
     }
 
@@ -32,20 +33,17 @@ public class AuthService {
         System.out.print("Enter your password: ");
         String password = in.nextLine();
 
-        //todo: setCurrentUser, save to file, add to catalog users
-        new User(username, password);
-
-        catalog.setCurrentUser(getUser(username, password));
+        catalog.setCurrentUser(catalog.createUser(username, password));
         in.close();
     }
 
-    private User getUser(String username, String password) {
+    private User getUser(String email, String password) {
         for (User user: catalog.getUsers()) {
-            if (user.getUsername().equals(username) && user.getPasswordHash().equals(hashPassword(password))) {
+            if (user.getEmail().equals(email) && user.getPasswordHash().equals(hashPassword(password))) {
                 return user;
             }
         }
-        throw new RuntimeException("User with username isn't existing");
+        throw new RuntimeException("User with email isn't existing");
     }
 
     // https://www.baeldung.com/java-password-hashing
