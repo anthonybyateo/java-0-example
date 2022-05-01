@@ -19,7 +19,7 @@ public class LibraryFileReader {
 
     public List<Book> readBooks() {
         List<Book> books = new ArrayList<>();
-        List<String> lines = readByLine(fileLoader.getFile(FileName.BOOK));
+        List<String> lines = readByLine(fileLoader.getFilePath(FileName.BOOK));
         for (String line : lines) {
             String[] sublines = line.split(DELIMITER);
             books.add(new Book(sublines[0], sublines[1], sublines[2], sublines[3], Boolean.parseBoolean(sublines[4])));
@@ -29,7 +29,7 @@ public class LibraryFileReader {
 
     public List<User> readUsers() {
         List<User> users = new ArrayList<>();
-        List<String> lines = readByLine(fileLoader.getFile(FileName.USER));
+        List<String> lines = readByLine(fileLoader.getFilePath(FileName.USER));
         for (String line : lines) {
             String[] sublines = line.split(DELIMITER);
             users.add(new User(sublines[0], sublines[1], sublines[2], Boolean.parseBoolean(sublines[3])));
@@ -37,9 +37,9 @@ public class LibraryFileReader {
         return users;
     }
 
-    private List<String> readByLine(File file) {
+    private List<String> readByLine(String filePath) {
         List<String> lines = new ArrayList<>();
-        try (Scanner scanner = new Scanner(file)) {
+        try (Scanner scanner = new Scanner(new File(filePath))) {
             while (scanner.hasNext()) {
                 lines.add(scanner.nextLine());
             }

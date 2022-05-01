@@ -1,28 +1,27 @@
 package org.example.library.resource;
 
-import java.io.File;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+// todo: move to real resource
 public class FileLoader {
-    private Map<FileName, File> files;
+    private Map<FileName, String> filePaths;
 
     public FileLoader() {
-        this.files = new HashMap<>();
+        this.filePaths = new HashMap<>();
         loadFiles();
     }
 
     private void loadFiles() {
         for (FileName fileName : FileName.values()) {
             URL url = getClass().getResource(fileName.getName());
-            File file = new File(url.getPath());
-            this.files.put(fileName, file);
+            this.filePaths.put(fileName, url.getPath());
         }
     }
 
-    public File getFile(FileName fileName) {
-        return files.get(fileName);
+    public String getFilePath(FileName fileName) {
+        return filePaths.get(fileName);
     }
 
 }

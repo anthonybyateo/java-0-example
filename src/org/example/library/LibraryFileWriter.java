@@ -19,21 +19,22 @@ public class LibraryFileWriter {
         final String bookStr = "%s,%s,%s,%s,%s".formatted(
                 book.getId(), book.getTitle(), book.getDescription(), book.getAuthor(), book.isEBook()
         );
-        writeLine(bookStr, fileLoader.getFile(FileName.BOOK));
+        writeLine(bookStr, fileLoader.getFilePath(FileName.BOOK));
     }
 
     public void writeToUsers(User user) {
         final String userStr = "%s,%s,%s,%s".formatted(
                 user.getId(), user.getEmail(), user.getPasswordHash(), user.isAdmin()
         );
-        writeLine(userStr, fileLoader.getFile(FileName.USER));
+        writeLine(userStr, fileLoader.getFilePath(FileName.USER));
     }
 
-    private void writeLine(String value, File file) {
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
-            writer.write("\n%s".formatted(value));
+    private void writeLine(String value, String filePath) {
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
+            writer.append("\n%s".formatted(value));
+            writer.flush();
         } catch (IOException e) {
-            System.out.printf("File %s doesn't exist", file.getName());
+            System.out.printf("File %s doesn't exist", filePath);
         }
     }
 
